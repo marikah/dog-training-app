@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var exphbs = require('express-handlebars'); // set handlebars as the view engine
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -11,8 +12,8 @@ var goals = require("./routes/goals"); // load router to the app
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.engine('hbs', exphbs({extname: '.hbs', defaultLayout: 'layout'})); // handlebar view engine code
+app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
