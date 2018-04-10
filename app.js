@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var exphbs = require('express-handlebars'); // set handlebars as the view engine
+var sassMiddleware = require('node-sass-middleware'); // set sass as the css pre-processor
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -14,6 +15,15 @@ var app = express();
 // view engine setup
 app.engine('hbs', exphbs({extname: '.hbs', defaultLayout: 'layout'})); // handlebar view engine code
 app.set('view engine', 'hbs');
+
+// css pre-processor setup
+app.use(
+  sassMiddleware({
+    src: __dirname + '/sass',
+    dest: __dirname + '/public',
+    debug: true,
+  })
+);
 
 app.use(logger('dev'));
 app.use(express.json());

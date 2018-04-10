@@ -1,0 +1,18 @@
+$font-stack: Helvetica, Arial, sans-serif;
+$primary-link-color: #768FD4;
+body {
+  padding: 50px;
+  font: 14px $font-stack;
+  a {
+    color: $primary-link-color;
+  }
+  ul {
+    list-style-type: none;
+    .checked {
+      span {
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+// color palette: #FFFFFF, #DEE5F4, #354778, #768FD4, #FEFFB0
