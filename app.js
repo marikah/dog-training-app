@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var exphbs = require('express-handlebars'); // set handlebars as the view engine
 var sassMiddleware = require('node-sass-middleware'); // set sass as the css pre-processor
+var browserify = require('browserify-middleware'); // get browserify
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -24,6 +25,9 @@ app.use(
     debug: true,
   })
 );
+
+// browserify setup
+app.get('/javascripts/bundle.js', browserify('./client/script.js'));
 
 app.use(logger('dev'));
 app.use(express.json());
